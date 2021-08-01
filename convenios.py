@@ -1,5 +1,5 @@
-import scipy
 import numpy
+from sympy import *
 
 # errores = [0.1 , 0.2 , 0.1, 1]
 # medicion = 10
