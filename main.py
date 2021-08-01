@@ -39,24 +39,25 @@ def simbolos(symb):
   #debo de agregar que el hechon de extraer las variables symbolicas, permite extraerlas
   return lista
 
-def derivadas(expresion, variables, ):
-    """
-    toma la funcion, y los simbolos
-    nos entrega una lista o arreglo con las derivadas simbolicas
-    """
-    pass
+def derivadas(expresion, variables):
+  """
+  toma la funcion, y los simbolos
+  nos entrega una lista o arreglo con las derivadas simbolicas
+  """
+  return list(  map( lambda x: diff(expr, x), variables )   )
 
-def subrule():
-    """
-    sustituye todos los simbolos en nuestras derivadas simbolicas
-    por mediciones
-    esta necesitara acceso a la derivada, y valor del simbolo
-    """
-    # >> x = symbols('x')
-    # >> expr = x + 1
-    # >> expr.subs(x,2) 
-    # 3
-    pass
+
+def subrule( funciones, variables, medicion ):
+  """
+  sustituye todos los simbolos en nuestras derivadas simbolicas
+  por mediciones
+  esta necesitara acceso a la derivada (funciones), y valor del simbolo (lista simbolos) o (variables)
+  """
+  # >> x = symbols('x')
+  # >> expr = x + 1
+  # >> expr.subs(x,2) 
+  # 3
+  pass
 
 
 
