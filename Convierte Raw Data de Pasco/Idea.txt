@@ -1,0 +1,1 @@
+todo se entrega en un formato desordenado y poco amigable, por tanto modificando algunas cosas se vuelve mas facil de leer para pandas
