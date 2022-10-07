@@ -1,6 +1,4 @@
 Tiempo (s)	ángulo (rad)	Vector velocidad angular (rad/s)	Aceleración angular (rad/s²)	Posición (m)	Vector velocidad (m/s)	Aceleración (m/s²)	Intensidad luminosa (%)
-0,000	0,000			0,0000			
-0,040	0,000	0,000		0,0000	0,000		
 0,080	0,000	0,000	0,000	0,0000	0,000	0,000	70,6
 0,120	0,000	0,000	0,000	0,0000	0,000	0,000	70,2
 0,160	0,000	0,000	0,000	0,0000	0,000	0,000	71,1
@@ -1420,4 +1418,3 @@ Tiempo (s)	ángulo (rad)	Vector velocidad angular (rad/s)	Aceleración angular (
 56,720	-32,899	-0,218	2,727	-0,7854	-0,005	0,065	0,1
 56,760	-32,899	0,000	2,727	-0,7854	0,000	0,065	0,2
 56,800	-32,899	0,000	0,000	-0,7854	0,000	0,000	0,2
-56,840	-32,899	0,000		-0,7854	0,000		0,2
