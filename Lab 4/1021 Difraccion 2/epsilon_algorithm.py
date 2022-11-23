@@ -14,22 +14,22 @@ def epsilon_difference(x, datapoint, epsilon):
         #print("No data matching conditions")
         return 0, 0
 
-def epsilon_loop(comparewith, data, epsilon=0.005, epsilonLimit=0.2):    
+def epsilon_loop(xCompare, data, epsilon=0.005, epsilonLimit=0.2):    
     while (epsilon <= epsilonLimit):
         #print("epsilon:",epsilon)
         Ndata = len(data)
-        x = np.zeros(Ndata)
+        xCompare = np.zeros(Ndata)
         dataR = np.zeros(Ndata)
 
         for jth, datapoint in enumerate(data):
             #print(datapoint)
-            x[jth], dataR[jth] = epsilon_difference(comparewith , datapoint, epsilon)
+            xCompare[jth], dataR[jth] = epsilon_difference(xCompare , datapoint, epsilon)
 
-        x = x[x > 1e-16] # sobre el machine error, 10e-16 se debe ver como 0
+        xCompare = xCompare[xCompare > 1e-16] # sobre el machine error, 10e-16 se debe ver como 0
         dataR = dataR[dataR > 1e-16]
-        if (len(x) > 0):
-            #print(x, dataR)
-            return x, dataR, epsilon
+        if (len(xCompare) > 0):
+            #print(xCompare, dataR)
+            return xCompare, dataR, epsilon
         elif (epsilon <= epsilonLimit):
             #print(epsilon)
             epsilon += 0.005 
@@ -46,16 +46,18 @@ def compara2df(dfsmall, dfbig, epsilon=0.005, epsilonLimit=0.2):
     dfbig = vapor_agua["lambdas nm"]
     df = hidrogeno["lambdas nm"]
     """
-    x = np.zeros(len(dfbig))
-    dataResult = np.zeros(len(dfbig))
+    dfbigX = np.zeros(len(dfbig))
+    dfsmallX = np.zeros(len(dfbig))
     epsilon_DF = np.zeros(len(dfbig))
 
     for ith, datapoint in enumerate(dfbig):
         #print("ith", ith)
+        # notese que aqui se invierte el orden, se usa dfbig[point] = datapoint
+        # por tanto dfbigX sera parte del dataBig
         z = epsilon_loop(datapoint, dfsmall, epsilon, epsilonLimit)
-        x[ith], dataResult[ith], epsilon_DF[ith]  = z[0], z[1], z[2]
+        dfbigX[ith], dfsmallX[ith], epsilon_DF[ith]  = z[0], z[1], z[2]
 
-    return x, dataResult, epsilon_DF
+    return dfsmallX, dfbigX, epsilon_DF
 
 
 
@@ -74,11 +76,11 @@ if __name__ == "__main__":
     #hidrogeno
 
     df = hidrogeno["lambda nm"]
-    x, dataResult, epsilon_DF = compara2df(dfsmall = df, dfbig=vaporagua["lambda nm"])
+    xCompare, dataResult, epsilon_DF = compara2df(dfsmall = df, dfbig=vaporagua["lambda nm"])
 
     comparacion = pd.DataFrame(
         {
-            "hidrogeno": x,
+            "hidrogeno": xCompare,
             "vapor agua": dataResult,
             "epsilon algorithm": epsilon_DF
         }
